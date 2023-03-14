@@ -29,7 +29,7 @@ ___
   ```
   pip install -r requirements.txt
 - The second way:
-  - You can install all the required libraries yourself:
+  - You can install all the required libraries yourself
   ```
   pip install python-dotenv
   pip install aiogram
