@@ -45,7 +45,7 @@ python whale_checker_bot\main.py
 ```
 ___
 ### **My socials**
-[Twitter](https://twitter.com/home?lang=ru)
+[Twitter](https://twitter.com/itwasreallycool)
 [Telegram](https://t.me/itwasreallycalm)
 [GitHub](https://github.com/CyrillLermontov) 
 ___
