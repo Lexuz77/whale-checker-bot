@@ -134,7 +134,7 @@ async def check_watchlist(message: types.Message, state: FSMContext):
         await message.answer(res, reply_markup=wlistkb)
         await state.finish()
     except exc.MessageTextIsEmpty as ex:
-        await message.reply('Your watchlist is empty')
+        await message.reply('Your watchlist is empty', reply_markup=wlistkb)
 
 
 async def delete_item(callback_query: types.CallbackQuery, state: FSMContext):
