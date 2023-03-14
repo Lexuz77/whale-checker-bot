@@ -5,13 +5,12 @@
 <h3 align="center"><b>Adding and removing wallets from your own watchlist</b></h3>
 
 ____
-<img align="middle" src="https://github.com/CyrillLermontov/whale-checker-bot/blob/main/preview.jpg"/>
+<img align="middle" src="https://github.com/CyrillLermontov/whale-checker-bot/blob/main/image.png"/>
 
 ____
 
 <h2 align="center">🚀 Getting Started 🚀</h2>
 
-____
 ### **Setting up Environment variables**
 - Create `.env` file and paste there:
   ```
