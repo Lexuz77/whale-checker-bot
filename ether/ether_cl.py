@@ -24,7 +24,7 @@ def transactions(wallet: str) -> list:
         'page': 1,
         'offset': 10,
         'sort': 'asc',
-        'apikey': '2BW27IVCDHM38PE4QFJN3PE5KMTCDP4BG4' # Use your API key here!
+        'apikey': os.getenv('ETH_API') # Use your API key here!
     }
     
     response = requests.get('https://api.etherscan.io/api', params=url_params)
