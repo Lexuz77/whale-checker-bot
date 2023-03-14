@@ -1,9 +1,13 @@
 from etherscan import Etherscan
 import requests
 import json
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 
-eth = Etherscan('2BW27IVCDHM38PE4QFJN3PE5KMTCDP4BG4') # Use your API key here!
+eth = Etherscan(os.getenv('ETH_API')) # Use your API key here!
 
 
 subscriptions = {} # Set up a dictionary which keeps a track of what users are subscribing to
