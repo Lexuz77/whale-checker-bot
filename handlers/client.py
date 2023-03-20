@@ -36,19 +36,24 @@ async def commands_start(message : types.Message):
 
 
 async def send_notifications_transactions(callback_query: types.CallbackQuery):
-    '''Notificztions about new transactions on wallets'''
+    '''Notifications about new transactions on wallets'''
     await bot.send_message(callback_query.from_user.id, "Stalker mode has started...")
     while True:
-        wallets = await sqlite_db.sql_for_transactions(callback_query.from_user.id)
-        print(ether_cl.subscriptions)
-        for wallet in wallets:
-            current_latest_tx = ether_cl.get_latest_tx(ether_cl.transactions(wallet[0]))
-            if callback_query.from_user.id in ether_cl.subscriptions.keys()\
-                    and wallet[0] in ether_cl.subscriptions[callback_query.from_user.id]\
-                    and int(current_latest_tx['timestamp']) > int(ether_cl.subscriptions[callback_query.from_user.id][wallet[0]]['timestamp']):
-                await bot.send_message(callback_query.from_user.id, f'New transactions occured for {wallet[1]}!')
-                await bot.send_message(callback_query.from_user.id, ether_cl.format_tx(current_latest_tx))
-            ether_cl.update_subscriptions(callback_query.from_user.id, wallet[0])
+        try:
+            wallets = await sqlite_db.sql_for_transactions(callback_query.from_user.id)
+            print(ether_cl.subscriptions)
+            for wallet in wallets:
+                current_latest_tx = ether_cl.get_latest_tx(ether_cl.transactions(wallet[0]))
+            
+                if callback_query.from_user.id in ether_cl.subscriptions.keys()\
+                        and wallet[0] in ether_cl.subscriptions[callback_query.from_user.id]\
+                        and int(current_latest_tx['timestamp']) > int(ether_cl.subscriptions[callback_query.from_user.id][wallet[0]]['timestamp']):
+                    await bot.send_message(callback_query.from_user.id, f'New transactions occured for {wallet[1]}!')
+                    await bot.send_message(callback_query.from_user.id, ether_cl.format_tx(current_latest_tx))
+
+                ether_cl.update_subscriptions(callback_query.from_user.id, wallet[0])
+        except:
+            print('Somrthing wrong')
         await asyncio.sleep(20)
         
 

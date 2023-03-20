@@ -4,6 +4,7 @@ import json
 import os
 from dotenv import load_dotenv, find_dotenv
 
+
 load_dotenv(find_dotenv())
 
 
@@ -35,13 +36,16 @@ def transactions(wallet: str) -> list:
                 for tx in txs ]
 
 
-def update_subscriptions(chat_id, wallet):
+def update_subscriptions(chat_id=None, wallet=None):
     '''Update the "subscriptions" dictionary'''
     global subscriptions
-    txs = transactions(wallet)
-    if chat_id not in subscriptions.keys():
-        subscriptions[chat_id] = {}
-    subscriptions[chat_id][wallet] = get_latest_tx(txs)
+    try:
+        txs = transactions(wallet)
+        if chat_id and chat_id not in subscriptions.keys():
+            subscriptions[chat_id] = {}
+        subscriptions[chat_id][wallet] = get_latest_tx(txs)
+    except:
+        print('Subscriptions dict has been created')
 
 
 def get_wallet_balance(wallet):
@@ -63,11 +67,3 @@ def get_latest_tx(txs: list) -> int:
 def format_tx(tx: dict) -> str:
     '''Format a transaction dict item to printable string'''
     return f'From: {tx["from"]}, To: {tx["to"]}, Amount: {tx["value"]}'
-
-
-#print(get_balance_with_token('0x0716a17fbaee714f1e6ab0f9d59edbc5f09815c0', '0x16756EC1DEb89A2106C35E0B586a799D0A61837D'))
-#print(float(eth.get_eth_last_price()['ethusd']))
-#print(get_wallet_balance('0x0716a17fbaee714f1e6ab0f9d59edbc5f09815c0'))
-
-
-#print(type(transactions('0xDBF5E9c5206d0dB70a90108bf936DA60221dC080')))
